@@ -48,4 +48,9 @@ public class TrabalhoBritoResource {
     public ResponseEntity<AnguloEntreVetoresDTO> calcularAnguloVetores(@RequestBody FormularioDeNumeros formularioDeNumeros) {
         return this.trabalhoBritoService.calcularAnguloVetores(formularioDeNumeros);
     }
+
+    @GetMapping("/produto-vetorial")
+    public ResponseEntity<ProdutoVetorialDTO> calcularProdutoVetorial(@RequestBody FormularioDeNumeros formularioDeNumeros) {
+        return this.trabalhoBritoService.calcularProdutoVetorial(formularioDeNumeros);
+    }
 }

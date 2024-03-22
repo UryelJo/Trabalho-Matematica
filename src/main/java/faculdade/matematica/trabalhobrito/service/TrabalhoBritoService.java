@@ -93,18 +93,21 @@ public class TrabalhoBritoService {
         AnguloEntreVetoresDTO anguloEntreVetoresDTO = new AnguloEntreVetoresDTO();
         ModuloDTO moduloDTO = this.calcularModulo(formularioDeNumeros).getBody();
         assert moduloDTO != null;
-        anguloEntreVetoresDTO.setResultado_UV((double) ((formularioDeNumeros.getX1() * formularioDeNumeros.getX2()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getY2()) + (formularioDeNumeros.getZ1() * formularioDeNumeros.getZ2())) / moduloDTO.getResultado_M_U() * moduloDTO.getResultado_M_V());
-        anguloEntreVetoresDTO.setResultado_UW((double) ((formularioDeNumeros.getX1() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getY3()) + (formularioDeNumeros.getZ1() * formularioDeNumeros.getZ3())) / moduloDTO.getResultado_M_U() * moduloDTO.getResultado_M_W());
-        anguloEntreVetoresDTO.setResultado_VW((double) ((formularioDeNumeros.getX2() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getY2() * formularioDeNumeros.getY3()) + (formularioDeNumeros.getZ2() * formularioDeNumeros.getZ3())) / moduloDTO.getResultado_M_V() * moduloDTO.getResultado_M_W());
-//        anguloEntreVetoresDTO.setResultado_UV(Math.toDegrees(Math.acos(anguloEntreVetoresDTO.getResultado_UV())));
-//        anguloEntreVetoresDTO.setResultado_UW(Math.toDegrees(Math.acos(anguloEntreVetoresDTO.getResultado_UW())));
-//        anguloEntreVetoresDTO.setResultado_VW(Math.toDegrees(Math.acos(anguloEntreVetoresDTO.getResultado_VW())));
+        anguloEntreVetoresDTO.setResultado_UV(((double) ((formularioDeNumeros.getX1() * formularioDeNumeros.getX2()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getY2()) + (formularioDeNumeros.getZ1() * formularioDeNumeros.getZ2()))) / (moduloDTO.getResultado_M_U() * moduloDTO.getResultado_M_V()));
+        anguloEntreVetoresDTO.setResultado_UW(((double) ((formularioDeNumeros.getX1() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getY3()) + (formularioDeNumeros.getZ1() * formularioDeNumeros.getZ3()))) / (moduloDTO.getResultado_M_U() * moduloDTO.getResultado_M_W()));
+        anguloEntreVetoresDTO.setResultado_VW(((double) ((formularioDeNumeros.getX2() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getY2() * formularioDeNumeros.getY3()) + (formularioDeNumeros.getZ2() * formularioDeNumeros.getZ3()))) / (moduloDTO.getResultado_M_V() * moduloDTO.getResultado_M_W()));
         anguloEntreVetoresDTO.setResultado_UV(Math.acos(anguloEntreVetoresDTO.getResultado_UV()));
         anguloEntreVetoresDTO.setResultado_UW(Math.acos(anguloEntreVetoresDTO.getResultado_UW()));
         anguloEntreVetoresDTO.setResultado_VW(Math.acos(anguloEntreVetoresDTO.getResultado_VW()));
-        anguloEntreVetoresDTO.setResultado_UV(anguloEntreVetoresDTO.getResultado_UV()*180/Math.PI);
-        anguloEntreVetoresDTO.setResultado_UW(anguloEntreVetoresDTO.getResultado_UW()*180/Math.PI);
-        anguloEntreVetoresDTO.setResultado_VW(anguloEntreVetoresDTO.getResultado_VW()*180/Math.PI);
+        anguloEntreVetoresDTO.setResultado_UV((anguloEntreVetoresDTO.getResultado_UV()*180)/Math.PI);
+        anguloEntreVetoresDTO.setResultado_UW((anguloEntreVetoresDTO.getResultado_UW()*180)/Math.PI);
+        anguloEntreVetoresDTO.setResultado_VW((anguloEntreVetoresDTO.getResultado_VW()*180)/Math.PI);
         return ResponseEntity.ok().body(anguloEntreVetoresDTO);
+    }
+
+    public ResponseEntity<ProdutoVetorialDTO> calcularProdutoVetorial(FormularioDeNumeros formularioDeNumeros) {
+        ProdutoVetorialDTO produtoVetorialDTO = new ProdutoVetorialDTO();
+
+        return ResponseEntity.ok().body(produtoVetorialDTO);
     }
 }
