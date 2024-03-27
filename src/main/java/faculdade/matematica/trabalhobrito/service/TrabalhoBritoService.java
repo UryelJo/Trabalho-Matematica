@@ -49,7 +49,6 @@ public class TrabalhoBritoService {
         subtracao.add((double) (formularioDeNumeros.getZ2() - formularioDeNumeros.getZ3()));
         subtracaoDTO.setResultado_VW(subtracao);
         return ResponseEntity.ok().body(subtracaoDTO);
-
     }
 
     public ResponseEntity<MultiplicacaoConstanteDTO> calcularMultiplicacaoPorConstante(FormularioDeNumeros formularioDeNumeros, Long constante) {
@@ -107,7 +106,16 @@ public class TrabalhoBritoService {
 
     public ResponseEntity<ProdutoVetorialDTO> calcularProdutoVetorial(FormularioDeNumeros formularioDeNumeros) {
         ProdutoVetorialDTO produtoVetorialDTO = new ProdutoVetorialDTO();
-
+        produtoVetorialDTO.setResultado_UV((double) ((formularioDeNumeros.getY1() * formularioDeNumeros.getZ2()) - (formularioDeNumeros.getY2() * formularioDeNumeros.getZ1())) + ((formularioDeNumeros.getZ1() * formularioDeNumeros.getX2()) - (formularioDeNumeros.getZ2() * formularioDeNumeros.getX1())) + ((formularioDeNumeros.getX1() * formularioDeNumeros.getY2()) - (formularioDeNumeros.getX2() * formularioDeNumeros.getY1())));
+        produtoVetorialDTO.setResultado_VW((double) ((formularioDeNumeros.getY2() * formularioDeNumeros.getZ3()) - (formularioDeNumeros.getY3() * formularioDeNumeros.getZ2())) + ((formularioDeNumeros.getZ2() * formularioDeNumeros.getX3()) - (formularioDeNumeros.getZ3() * formularioDeNumeros.getX2())) + ((formularioDeNumeros.getX2() * formularioDeNumeros.getY3()) - (formularioDeNumeros.getX3() * formularioDeNumeros.getY2())));
+        produtoVetorialDTO.setResultado_UW((double) ((formularioDeNumeros.getY1() * formularioDeNumeros.getZ3()) - (formularioDeNumeros.getY3() * formularioDeNumeros.getZ1())) + ((formularioDeNumeros.getZ1() * formularioDeNumeros.getX3()) - (formularioDeNumeros.getZ3() * formularioDeNumeros.getX1())) + ((formularioDeNumeros.getX1() * formularioDeNumeros.getY3()) - (formularioDeNumeros.getX3() * formularioDeNumeros.getY1())));
         return ResponseEntity.ok().body(produtoVetorialDTO);
+    }
+
+
+    public ResponseEntity<ProdutoMistoDTO> calcularProdutoMisto(FormularioDeNumeros formularioDeNumeros) {
+        ProdutoMistoDTO produtoMistoDTO = new ProdutoMistoDTO();
+        produtoMistoDTO.setResultadoProdutoMisto((double) ((formularioDeNumeros.getX1() * formularioDeNumeros.getY2() * formularioDeNumeros.getZ3()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getZ2() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getZ1() * formularioDeNumeros.getX2() * formularioDeNumeros.getY3())) - ((formularioDeNumeros.getZ1() * formularioDeNumeros.getY2() * formularioDeNumeros.getX3()) + (formularioDeNumeros.getY1() * formularioDeNumeros.getX2() * formularioDeNumeros.getZ3()) + (formularioDeNumeros.getX1() * formularioDeNumeros.getZ2() * formularioDeNumeros.getY3())));
+        return ResponseEntity.ok().body(produtoMistoDTO);
     }
 }

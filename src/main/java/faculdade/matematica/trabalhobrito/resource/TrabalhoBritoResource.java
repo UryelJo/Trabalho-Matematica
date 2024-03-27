@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/trabalho-brito/implementacao")
+@RequestMapping("trabalho-brito/implementacao")
 public class TrabalhoBritoResource {
 
     private final TrabalhoBritoService trabalhoBritoService;
@@ -52,5 +52,10 @@ public class TrabalhoBritoResource {
     @GetMapping("/produto-vetorial")
     public ResponseEntity<ProdutoVetorialDTO> calcularProdutoVetorial(@RequestBody FormularioDeNumeros formularioDeNumeros) {
         return this.trabalhoBritoService.calcularProdutoVetorial(formularioDeNumeros);
+    }
+
+    @GetMapping("/produto-misto")
+    public ResponseEntity<ProdutoMistoDTO> calcularProdutoMisto(@RequestBody FormularioDeNumeros formularioDeNumeros) {
+        return this.trabalhoBritoService.calcularProdutoMisto(formularioDeNumeros);
     }
 }
